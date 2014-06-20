@@ -1,11 +1,14 @@
 #! /usr/bin/env python3
 
 from Bar import Bar
-from Plugins import Time
-from time import sleep
+from Plugins import Time, Battery
+
 
 my_bar = Bar()
-time = Time("%H:%M")
+time = Time("%H:%M:%S")
+bat = Battery()
+
 my_bar.register_item(time)
+my_bar.register_item(bat)
 
 my_bar.loop()
