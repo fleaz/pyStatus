@@ -1,1 +1,1 @@
-__all__ = ["Time", "Battery"]
+__all__ = ["Time", "Battery", "MPD"]
