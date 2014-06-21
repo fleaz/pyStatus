@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 
 from Bar import Bar
-from Plugins import Time, Battery, CPU, Memory, MPD, Traffic
+from Plugins import Time, Battery, CPU, Memory, MPD, Traffic, Ip
 
 
 my_bar = Bar(delay=3)
@@ -11,7 +11,9 @@ mpd = MPD.MPD()
 cpu = CPU.CPU()
 mem = Memory.Memory()
 traffic = Traffic.Traffic(interface="wlp3s0")
+ip = Ip.IP(interface="wlp3s0", type="wifi",protocol=4)
 
+my_bar.register_item(ip)
 my_bar.register_item(traffic)
 my_bar.register_item(mem)
 my_bar.register_item(cpu)
