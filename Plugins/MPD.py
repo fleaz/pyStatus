@@ -15,8 +15,8 @@ class MPD(BarItem):
         self.update()
 
     def update(self):
-        self.mpc.connect(self.server, self.port)
         try:
+            self.mpc.connect(self.server, self.port)
             status = self.mpc.status()
             if (status['state'] == "play"):
                 song = self.mpc.currentsong()
@@ -27,7 +27,7 @@ class MPD(BarItem):
             else:
                 self.output['full_text'] = status['state']
             self.mpc.disconnect()
-        except ConnectionError:
+        except:
             self.output['full_text'] = "MPD disconnected"
 
     def get_json(self):
