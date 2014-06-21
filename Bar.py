@@ -30,3 +30,6 @@ class Bar(object):
             sys.stdout.flush()
             print (self.get_json() + ",")
             sleep(self.delay)
+
+    def get_delay(self):
+        return self.delay
