@@ -5,8 +5,8 @@ from Plugins import Time, Battery
 
 
 my_bar = Bar()
-time = Time("%H:%M:%S")
-bat = Battery()
+time = Time.Time("%H:%M:%S")
+bat = Battery.Battery()
 
 my_bar.register_item(bat)
 my_bar.register_item(time)
