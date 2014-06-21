@@ -31,7 +31,7 @@ class Battery(BarItem):
         self.number = number
 
     def update(self):
-        args = ("cat", "/sys/class/power_supply/BAT0/energy_full")
+        args = ("cat", "/sys/class/power_supply/BAT0/energy_full_design") #to get a realistic value
         popen = subprocess.Popen(args, stdout=subprocess.PIPE)
         popen.wait()
         bat_full = popen.stdout.read().decode("utf-8").strip()
