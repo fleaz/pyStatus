@@ -2,6 +2,9 @@
 
 
 class BarItem(object):
+    valid_options = ['full_text', 'short_text', 'color', 'min_width', 'align', 'name',
+                     'instance', 'urgent', 'separator', 'separator_block_width']
+
     def __init__(self, name):
         assert(len(name) > 0)
         self.name = name
@@ -12,3 +15,7 @@ class BarItem(object):
 
     def get(self):
         return self.output
+
+    def set(self, option, value):
+        assert(option in self.valid_options)
+        self.output[option] = value
