@@ -4,7 +4,6 @@ from musicpd import MPDClient
 
 
 class MPD(BarItem):
-    output = {}
 
     def __init__(self, server="localhost",port=6600):
         self.mpc = MPDClient()
@@ -29,6 +28,3 @@ class MPD(BarItem):
             self.mpc.disconnect()
         except:
             self.output['full_text'] = "MPD disconnected"
-
-    def get_json(self):
-        return self.output

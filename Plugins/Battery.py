@@ -3,7 +3,6 @@ from BarItem import BarItem
 import subprocess
 
 class Battery(BarItem):
-    output = {}
 
     def __init__(self, number=0):
         BarItem.__init__(self, "Battery")
@@ -19,9 +18,13 @@ class Battery(BarItem):
         popen = subprocess.Popen(args, stdout=subprocess.PIPE)
         popen.wait()
         bat_now = popen.stdout.read().decode("utf-8").strip()
-        percentage = '%.1f' % ((int(bat_now) / int(bat_full)) * 100)
-        self.output['full_text'] = "Battery: " + percentage + "%"
+        percentage = (int(bat_now) / int(bat_full)) * 100
+        self.output['full_text'] = "Battery: " + '%.1f' % percentage + "%"
 
-    def get_json(self):
-        return self.output
+        if(25 < percentage):
+            self.output['color'] = "#00FF00"
+        elif(25 <= percentage < 10):
+            self.output['color'] = "#FFFF00"
+        else:
+            self.output['color'] = "#FF0000"
 

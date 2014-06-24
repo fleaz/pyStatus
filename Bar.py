@@ -1,9 +1,10 @@
 #! /usr/bin/env python3
 
-from json import loads, dumps
 from BarItem import BarItem
 from time import sleep
 import sys
+import json
+
 
 class Bar(object):
 
@@ -20,7 +21,7 @@ class Bar(object):
         for item in self.bar_items:
             item.update()
             output.append(item.get_json())
-        return dumps(output)
+        return json.dumps(output)
 
     def loop(self):
         print("{\"version\": 1}")
@@ -28,7 +29,7 @@ class Bar(object):
         print("[],")
         while(1):
             sys.stdout.flush()
-            print (self.get_json() + ",")
+            print("%s," % self.get_json())
             sleep(self.delay)
 
     def get_delay(self):

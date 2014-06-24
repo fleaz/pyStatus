@@ -5,7 +5,6 @@ import psutil
 from time import time
 
 class Traffic(BarItem):
-    output = {}
 
     def __init__(self, interface="eth0"):
         BarItem.__init__(self, "Traffic")
@@ -37,6 +36,3 @@ class Traffic(BarItem):
         self.old_timestamp = new_timestamp
 
         self.output['full_text'] = self.interface + ": " + speed_recv + " MBps down " + "," + speed_sent + " MBps up"
-
-    def get_json(self):
-        return self.output

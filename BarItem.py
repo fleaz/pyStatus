@@ -2,13 +2,13 @@
 
 
 class BarItem(object):
-    name = "Bar Item"
 
     def __init__(self, name):
         self.name = name
+        self.output = {}
 
     def update(self):
         pass
 
     def get_json(self):
-        pass
+        return self.output

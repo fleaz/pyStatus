@@ -4,7 +4,6 @@ from BarItem import BarItem
 
 
 class IP(BarItem):
-    output = {}
 
     def __init__(self,type="lan", interface="eth0", protocol=4):
         BarItem.__init__(self, "IP")
@@ -33,5 +32,7 @@ class IP(BarItem):
 
         self.output['full_text'] = prefix + addr
 
-    def get_json(self):
-        return self.output
+        if(addr == "-"):
+            self.output['color'] = "#FF0000"
+        else:
+            self.output['color'] = "#00FF00"

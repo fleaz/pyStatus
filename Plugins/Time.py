@@ -5,7 +5,6 @@ import time
 
 class Time(BarItem):
     output_format = ""
-    output = {}
 
     def __init__(self, output_format="%H:%M"):
         BarItem.__init__(self, "Time")
@@ -16,6 +15,3 @@ class Time(BarItem):
     def update(self):
         time_string = time.strftime(self.output_format)
         self.output['full_text'] = time_string
-
-    def get_json(self):
-        return self.output
