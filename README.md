@@ -3,13 +3,17 @@ pyStatus
 
 Python tool to use with i3bar
 
-== Requirements ===
+
+Requirements
+------
     - psutil
     - python-musicpd
     - netifaces
-(Can be installed with pip install)
+(Can all be installed with pip install)
 
-== Installation ==
+
+Installation
+-------
 Just edit one line in your ~/.i3/config file and set
 status_command to the runner.py
 
