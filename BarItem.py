@@ -1,14 +1,14 @@
-#! /urs/bin/env python3
+#!/usr/bin/env python3
 
 
 class BarItem(object):
-
     def __init__(self, name):
+        assert(len(name) > 0)
         self.name = name
-        self.output = {}
+        self.output = {'name': name.lower()}
 
     def update(self):
         pass
 
-    def get_json(self):
+    def get(self):
         return self.output

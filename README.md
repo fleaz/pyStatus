@@ -9,6 +9,7 @@ Requirements
     - psutil
     - python-musicpd
     - netifaces
+    - basiciw
 (Can all be installed with pip install)
 
 
