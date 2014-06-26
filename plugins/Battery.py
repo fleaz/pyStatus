@@ -23,7 +23,7 @@ class Battery(BarItem):
 
         if(25 < percentage):
             self.output['color'] = "#00FF00"
-        elif(25 <= percentage < 10):
+        elif(10 < percentage <= 25):
             self.output['color'] = "#FFFF00"
         else:
             self.output['color'] = "#FF0000"
