@@ -15,9 +15,10 @@ class MemoryPercent(BarItem):
         mem_percent = mem[2]
 
 
-        self.output['full_text'] = "[" + str(mem_percent) + "%]"
+        self.output['full_text'] = "RAM: " + str(mem_percent) + "%]"
+
         if(mem_percent < 80):
-            self.output['color'] = "#00FF00"
+            self.output['color'] = "#FFFFFF"
         elif(80 <= mem_percent < 90):
             self.output['color'] = "#FFFF00"
         else:

@@ -20,7 +20,7 @@ class CPU(BarItem):
         sum = sum / count
 
         if sum < 80:
-            self.output['color'] = "#00FF00"
+            self.output['color'] = "#FFFFFF"
         elif 80 <= sum < 95:
             self.output['color'] = "#FFFF00"
         else:

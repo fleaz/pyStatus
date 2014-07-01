@@ -14,17 +14,28 @@ class Battery(BarItem):
         popen = subprocess.Popen(args, stdout=subprocess.PIPE)
         popen.wait()
         bat_full = popen.stdout.read().decode("utf-8").strip()
+
         args = ("cat", "/sys/class/power_supply/BAT0/energy_now")
         popen = subprocess.Popen(args, stdout=subprocess.PIPE)
         popen.wait()
         bat_now = popen.stdout.read().decode("utf-8").strip()
+
+        args = ("cat", "/sys/class/power_supply/BAT0/status")
+        popen = subprocess.Popen(args, stdout=subprocess.PIPE)
+        popen.wait()
+        status = popen.stdout.read().decode("utf-8").strip()
+
         percentage = (int(bat_now) / int(bat_full)) * 100
         self.output['full_text'] = "Battery: " + '%.1f' % percentage + "%"
 
-        if(25 < percentage):
-            self.output['color'] = "#00FF00"
-        elif(10 < percentage <= 25):
-            self.output['color'] = "#FFFF00"
+        if(status == "Charging"):
+            self.output['color'] = "#0676cb"
         else:
-            self.output['color'] = "#FF0000"
+            if(25 < percentage):
+                self.output['color'] = "#FFFFFF"
+            elif(10 < percentage <= 25):
+                self.output['color'] = "#FFFF00"
+            else:
+                self.output['color'] = "#FF0000"
+
 

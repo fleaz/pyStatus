@@ -35,4 +35,4 @@ class IP(BarItem):
         if(addr == "-"):
             self.output['color'] = "#FF0000"
         else:
-            self.output['color'] = "#00FF00"
+            self.output['color'] = "#FFFFFF"
