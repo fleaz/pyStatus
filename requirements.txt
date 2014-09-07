@@ -1,0 +1,4 @@
+psutil
+python-musicpd
+netifaces
+basiciw
