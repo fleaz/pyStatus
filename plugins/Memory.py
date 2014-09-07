@@ -23,3 +23,24 @@ class Memory(BarItem):
         mem_used = '%.0f' % (mem_used / 1048578)
 
         self.output['full_text'] = "RAM: " + mem_used + " MB/" + mem_total + " MB"
+
+
+class FreeMemory(BarItem):
+
+    def __init__(self):
+        BarItem.__init__(self, "MemoryFree")
+        self.output['name'] = "MemoryFree"
+        self.update()
+
+    def update(self):
+        mem = psutil.virtual_memory()
+        mem_total = mem[0]
+        mem_used = mem[3]
+        mem_buffer = mem[7]
+        mem_cached = mem[8]
+
+        mem_used = mem_used - mem_buffer - mem_cached
+        free_memory = ((mem_total / 1048578) - (mem_used / 1048578))
+
+        self.output['full_text'] = "RAM free: {0:.0f}MB".format(free_memory)
+
