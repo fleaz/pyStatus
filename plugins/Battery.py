@@ -1,6 +1,9 @@
 #! /usr/bin/env python3
-from BarItem import BarItem
+import os
 import subprocess
+
+from BarItem import BarItem
+
 
 class Battery(BarItem):
 
@@ -10,6 +13,10 @@ class Battery(BarItem):
         self.number = number
 
     def update(self):
+        if not os.path.exists("/sys/class/power_supply/BAT0"):
+            self.output['full_text'] = "No Battery"
+            return
+
         args = ("cat", "/sys/class/power_supply/BAT0/energy_full_design") #to get a realistic value
         popen = subprocess.Popen(args, stdout=subprocess.PIPE)
         popen.wait()
