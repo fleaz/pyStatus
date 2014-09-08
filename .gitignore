@@ -55,3 +55,4 @@ docs/_build/
 
 # custom
 .idea
+runner.py
