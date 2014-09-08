@@ -22,4 +22,4 @@ class Memory(BarItem):
         mem_total = '%.0f' % (mem_total / 1048578)
         mem_used = '%.0f' % (mem_used / 1048578)
 
-        self.output['full_text'] = "RAM: " + mem_used + " MB/" + mem_total + " MB"
+        self.output['full_text'] = "RAM: " + mem_used + " /" + mem_total + " MB"
