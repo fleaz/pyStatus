@@ -10,8 +10,10 @@ Requirements
     - python-musicpd
     - netifaces
     - basiciw
-(Can all be installed with pip install)
 
+Easy installation with pip is possible:
+
+``pip install -r requirements.txt``
 
 Installation
 -------
