@@ -35,4 +35,4 @@ class Traffic(BarItem):
         self.old_sent = new_sent
         self.old_timestamp = new_timestamp
 
-        self.output['full_text'] = "▲" + speed_sent + " MBps " + " ▼" + speed_recv + " MBps"
+        self.output['full_text'] = self.interface + ": " + speed_recv + " MBps down " + "," + speed_sent + " MBps up"
