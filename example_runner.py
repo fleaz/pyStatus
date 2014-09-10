@@ -7,7 +7,6 @@ from pyStatus.plugins import Time, Battery, CPU, Memory, MPD, Traffic, Ip, MemPe
 my_bar = Bar(delay=1)
 time = Time.Time("%H:%M")
 bat = Battery.Battery()
-mpd = MPD.MPD()
 cpu = CPU.CPU()
 mem = Memory.Memory()
 memPercent = MemPercent.MemoryPercent()
