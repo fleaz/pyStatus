@@ -11,11 +11,14 @@ class Battery(BarItem):
         BarItem.__init__(self, "Battery")
         self.output['name'] = "Battery"
         self.number = number
+        self._battery_path = "/sys/class/power_supply/"
 
     def update(self):
-        device = "BAT0"
-
-        if not os.path.exists("/sys/class/power_supply/{0}".format(device)):
+        for element in os.listdir(self._battery_path):
+            if element.startswith('BAT'):
+                device = element
+                break
+        else:
             self.output['full_text'] = "No Battery"
             return
 
