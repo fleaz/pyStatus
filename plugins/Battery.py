@@ -13,21 +13,23 @@ class Battery(BarItem):
         self.number = number
 
     def update(self):
-        if not os.path.exists("/sys/class/power_supply/BAT0"):
+        device = "BAT0"
+
+        if not os.path.exists("/sys/class/power_supply/{0}".format(device)):
             self.output['full_text'] = "No Battery"
             return
 
-        args = ("cat", "/sys/class/power_supply/BAT0/energy_full_design") #to get a realistic value
+        args = ("cat", "/sys/class/power_supply/{0}/energy_full_design".format(device)) #to get a realistic value
         popen = subprocess.Popen(args, stdout=subprocess.PIPE)
         popen.wait()
         bat_full = popen.stdout.read().decode("utf-8").strip()
 
-        args = ("cat", "/sys/class/power_supply/BAT0/energy_now")
+        args = ("cat", "/sys/class/power_supply/{0}/energy_now".format(device))
         popen = subprocess.Popen(args, stdout=subprocess.PIPE)
         popen.wait()
         bat_now = popen.stdout.read().decode("utf-8").strip()
 
-        args = ("cat", "/sys/class/power_supply/BAT0/status")
+        args = ("cat", "/sys/class/power_supply/{0}/status".format(device))
         popen = subprocess.Popen(args, stdout=subprocess.PIPE)
         popen.wait()
         status = popen.stdout.read().decode("utf-8").strip()
