@@ -1,49 +1,69 @@
 #! /usr/bin/env python3
 import os
-import subprocess
 
 from BarItem import BarItem
 
 
 class Battery(BarItem):
 
+    TYPE_AND_LOCATION = {
+        "bat_full": ["energy_full_design", "charge_full_design"],
+        "bat_now": ["energy_now", "charge_now"],
+        "status": ["status"]
+    }
+
     def __init__(self, number=0):
         BarItem.__init__(self, "Battery")
         self.output['name'] = "Battery"
         self.number = number
+        self._battery_path = "/sys/class/power_supply/"
 
     def update(self):
-        if not os.path.exists("/sys/class/power_supply/BAT0"):
+        for element in os.listdir(self._battery_path):
+            if element.startswith('BAT'):
+                device = element
+                break
+        else:
             self.output['full_text'] = "No Battery"
             return
 
-        args = ("cat", "/sys/class/power_supply/BAT0/energy_full_design") #to get a realistic value
-        popen = subprocess.Popen(args, stdout=subprocess.PIPE)
-        popen.wait()
-        bat_full = popen.stdout.read().decode("utf-8").strip()
+        results = {}
 
-        args = ("cat", "/sys/class/power_supply/BAT0/energy_now")
-        popen = subprocess.Popen(args, stdout=subprocess.PIPE)
-        popen.wait()
-        bat_now = popen.stdout.read().decode("utf-8").strip()
+        for (key, locations) in self.TYPE_AND_LOCATION.items():
+            for location in locations:
+                try:
+                    results[key] = self.getValueFromLocation(
+                        os.path.join(self._battery_path, device, location)
+                    )
+                except OSError:
+                    pass
 
-        args = ("cat", "/sys/class/power_supply/BAT0/status")
-        popen = subprocess.Popen(args, stdout=subprocess.PIPE)
-        popen.wait()
-        status = popen.stdout.read().decode("utf-8").strip()
+        try:
+            percentage = (int(results["bat_now"]) / int(results["bat_full"])) * 100
+            self.output['full_text'] = "Battery: {0:.1f}%".format(percentage)
 
-        percentage = (int(bat_now) / int(bat_full)) * 100
-        self.output['full_text'] = "Battery: " + '%.1f' % percentage + "%"
-
-        if(status == "Charging"):
-            self.output['color'] = "#0676cb"
-        else:
-            if(25 < percentage):
+            if 25 < percentage:
                 self.output['color'] = "#FFFFFF"
-            elif(10 < percentage <= 25):
+            elif 10 < percentage <= 25:
                 self.output['color'] = "#FFFF00"
             else:
                 self.output['color'] = "#FF0000"
+<<<<<<< HEAD
 
 
 
+=======
+        except KeyError:
+            self.output['full_text'] = "Battery: unknown"
+
+        try:
+            if results["status"] == "Charging":
+                self.output['color'] = "#0676cb"
+        except KeyError:
+            pass
+
+    @staticmethod
+    def getValueFromLocation(path):
+        with open(path) as foo:
+            return ''.join(foo.readlines())
+>>>>>>> fa8dabd20199ce85ba029facd125abb4412857f6
