@@ -1,8 +1,7 @@
-#! /usr/bin/env
-
-from BarItem import BarItem
+#! /usr/bin/env python3
 import psutil
 from time import time
+from ..BarItem import BarItem
 
 class Traffic(BarItem):
 

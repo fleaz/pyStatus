@@ -1,7 +1,6 @@
 #! /usr/bin/env python3
 import os
-
-from BarItem import BarItem
+from ..BarItem import BarItem
 
 
 class Battery(BarItem):

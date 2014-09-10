@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
-from BarItem import BarItem
 from musicpd import MPDClient
+from ..BarItem import BarItem
 
 
 class MPD(BarItem):

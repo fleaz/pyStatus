@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-from BarItem import BarItem
-from time import sleep
 import sys
 import json
+from time import sleep
+from .BarItem import BarItem
 
 
 class Bar():

@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 import netifaces
-from BarItem import BarItem
+from ..BarItem import BarItem
 
 
 class IP(BarItem):
