@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
-from BarItem import BarItem
 import time
+from ..BarItem import BarItem
 
 
 class Time(BarItem):

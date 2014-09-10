@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
-from BarItem import BarItem
 import psutil
+from ..BarItem import BarItem
 
 
 class Memory(BarItem):

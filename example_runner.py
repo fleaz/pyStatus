@@ -1,13 +1,12 @@
 #! /usr/bin/env python3
 
-from Bar import Bar
-from plugins import Time, Battery, CPU, Memory, MPD, Traffic, Ip, MemPercent, ESSID, MPD
+from pyStatus.Bar import Bar
+from pyStatus.plugins import Time, Battery, CPU, Memory, MPD, Traffic, Ip, MemPercent, ESSID
 
 
 my_bar = Bar(delay=1)
 time = Time.Time("%H:%M")
 bat = Battery.Battery()
-mpd = MPD.MPD()
 cpu = CPU.CPU()
 mem = Memory.Memory()
 memPercent = MemPercent.MemoryPercent()

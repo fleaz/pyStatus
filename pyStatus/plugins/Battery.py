@@ -1,7 +1,6 @@
 #! /usr/bin/env python3
 import os
-
-from BarItem import BarItem
+from ..BarItem import BarItem
 
 
 class Battery(BarItem):
@@ -48,11 +47,6 @@ class Battery(BarItem):
                 self.output['color'] = "#FFFF00"
             else:
                 self.output['color'] = "#FF0000"
-<<<<<<< HEAD
-
-
-
-=======
         except KeyError:
             self.output['full_text'] = "Battery: unknown"
 
@@ -66,4 +60,3 @@ class Battery(BarItem):
     def getValueFromLocation(path):
         with open(path) as foo:
             return ''.join(foo.readlines())
->>>>>>> fa8dabd20199ce85ba029facd125abb4412857f6

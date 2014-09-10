@@ -1,7 +1,7 @@
-#! /usr/bin/env
-
-from BarItem import BarItem
+#! /usr/bin/env python3
 import basiciw
+from ..BarItem import BarItem
+
 
 class ESSID(BarItem):
 
