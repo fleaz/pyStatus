@@ -51,7 +51,8 @@ class Battery(BarItem):
             self.output['full_text'] = "Battery: unknown"
 
         try:
-            if results["status"] == "Charging":
+            if results["status"].strip() == "Charging":
+
                 self.output['color'] = "#0676cb"
         except KeyError:
             pass
