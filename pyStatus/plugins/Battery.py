@@ -60,4 +60,5 @@ class Battery(BarItem):
     @staticmethod
     def getValueFromLocation(path):
         with open(path) as foo:
-            return ''.join(foo.readlines())
+            return ''.join(foo.readlines()).strip()
+
