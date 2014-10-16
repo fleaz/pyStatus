@@ -45,8 +45,9 @@ class Filesystem(BarItem):
             self.output['color'] = "#FFFFFF"
         else:
             self.output['color'] = "#FF0000"
+
         if self.style == "used":
-            self.output['full_text'] = "HDD: " + str(used) + "/" + str(total)
+            self.output['full_text'] = "HDD {path}: {0}/{1}".format(used, total, path=self.path)
         else:
-            self.output['full_text'] = "HDD: " + str(free) + " free"
+            self.output['full_text'] = "HDD {path}: {0} free".format(free, path=self.path)
 
