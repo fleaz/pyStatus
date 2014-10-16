@@ -39,6 +39,8 @@ class Filesystem(BarItem):
         free = self.sizeof_fmt(root.free)
         total = self.sizeof_fmt(root.total)
 
+        self.output['instance'] = '--'.join((self.style, self.path))
+
         if root.total - root.free < root.total * 0.9:
             self.output['color'] = "#FFFFFF"
         else:
