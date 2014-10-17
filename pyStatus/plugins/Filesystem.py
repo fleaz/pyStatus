@@ -6,7 +6,7 @@ _ntuple_diskusage = namedtuple('usage', 'total used free')
 
 class Filesystem(BarItem):
 
-    def __init__(self, path, style, show_path):
+    def __init__(self, path="/", style="used", show_path=True):
         BarItem.__init__(self, "Filesystem")
         self.output['name'] = "Filesystem"
         self.path = path
