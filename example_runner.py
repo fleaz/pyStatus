@@ -5,7 +5,7 @@ from pyStatus.plugins import Time, Battery, CPU, Memory, Ip, Traffic, Filesystem
 
 
 my_bar = Bar(delay=1)
-my_bar.register(Filesystem.Filesystem(path='/', style="free"))
+my_bar.register(Filesystem.Filesystem(path='/', style="free", show_path=True))
 my_bar.register(ESSID.ESSID(interface="wlp3s0"))
 my_bar.register(Ip.IP(interface="wlp3s0", type="wifi", protocol=4))
 my_bar.register(Ip.IP(interface="eth0", type="lan", protocol=4))

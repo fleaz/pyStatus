@@ -6,11 +6,12 @@ _ntuple_diskusage = namedtuple('usage', 'total used free')
 
 class Filesystem(BarItem):
 
-    def __init__(self, path, style):
+    def __init__(self, path, style, show_path):
         BarItem.__init__(self, "Filesystem")
         self.output['name'] = "Filesystem"
         self.path = path
         self.style = style
+        self.show_path = show_path
         self.update()
 
     def disk_usage(self, path):
@@ -46,8 +47,13 @@ class Filesystem(BarItem):
         else:
             self.output['color'] = "#FF0000"
 
-        if self.style == "used":
-            self.output['full_text'] = "HDD {path}: {0}/{1}".format(used, total, path=self.path)
+        if self.show_path:
+            path = " {path}".format(path=self.path)
         else:
-            self.output['full_text'] = "HDD {path}: {0} free".format(free, path=self.path)
+            path = ""
+
+        if self.style == "used":
+            self.output['full_text'] = "HDD{path}: {0}/{1}".format(used, total, path=path)
+        else:
+            self.output['full_text'] = "HDD{path}: {0} free".format(free, path=path)
 
