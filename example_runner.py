@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 
 from pyStatus.Bar import Bar
-from pyStatus.plugins import Time, Battery, CPU, Memory, Ip, Traffic, Filesystem
+from pyStatus.plugins import Time, Battery, CPU, Memory, Ip, Traffic, Filesystem, ESSID, MemPercent, MPD
 
 
 my_bar = Bar(delay=1)
