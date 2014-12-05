@@ -5,6 +5,8 @@ from pyStatus.plugins import Time, Battery, CPU, Memory, Ip, Traffic, Filesystem
 
 
 my_bar = Bar(delay=1)
+my_bar.register(DNS.DNS(address="www.google.de"))
+my_bar.register(Internet.Internet(address="http://www.google.de"))
 my_bar.register(Filesystem.Filesystem(path='/', style="free", show_path=True))
 my_bar.register(ESSID.ESSID(interface="wlp3s0"))
 my_bar.register(Ip.IP(interface="wlp3s0", type="wifi", protocol=4))
