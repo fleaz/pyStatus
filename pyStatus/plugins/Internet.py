@@ -1,34 +1,26 @@
 #! /usr/bin/env python3
 import requests
 from ..BarItem import BarItem
-import socket
+import signal
 
 
-def ping(dest_addr, timeout=2):
-    """
-    Returns either the delay (in seconds) or none on timeout.
-    """
-    icmp = socket.getprotobyname("icmp")
-    try:
-        my_socket = socket.socket(socket.AF_INET, socket.SOCK_RAW, icmp)
-    except (socket.error, error):
-        (errno, msg) = error
-        if errno == 1:
-            # Operation not permitted
-            msg = msg + (
-                " - Note that ICMP messages can only be sent from processes"
-                " running as root."
-            )
-            raise socket.error(msg)
-        raise # raise the original error
+class Timeout():
+    """Timeout class using ALARM signal."""
+    class Timeout(Exception):
+        pass
 
-    my_ID = int(time.time() * 100000) & 0xFFFF
+    def __init__(self, sec):
+        self.sec = sec
 
-    send_one_ping(my_socket, dest_addr, my_ID)
-    delay = receive_one_ping(my_socket, my_ID, timeout)
+    def __enter__(self):
+        signal.signal(signal.SIGALRM, self.raise_timeout)
+        signal.alarm(self.sec)
 
-    my_socket.close()
-    return delay
+    def __exit__(self, *args):
+        signal.alarm(0)    # disable alarm
+
+    def raise_timeout(self, *args):
+        raise Timeout.Timeout()
 
 
 class Internet(BarItem):
