@@ -26,7 +26,7 @@ class Traffic(BarItem):
         new_recv = interface_info[1]
         new_timestamp = int(time())
 
-        if ((new_timestamp - self.old_timestamp) > 0):
+        if (new_timestamp - self.old_timestamp) > 0:
             speed_sent = (new_sent - self.old_sent) / (new_timestamp - self.old_timestamp)
             speed_recv = (new_recv - self.old_recv) / (new_timestamp - self.old_timestamp)
         else:
