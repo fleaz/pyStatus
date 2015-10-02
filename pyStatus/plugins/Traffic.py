@@ -22,9 +22,8 @@ class Traffic(BarItem):
             self.output['full_text'] = "Failed to find interface {!r}".format(self.interface)
             return
 
-        new_sent = interface_info[0]
-        new_recv = interface_info[1]
-        new_timestamp = int(time())
+        new_sent, new_recv, *_ = interface_info
+        new_timestamp = time()
 
         time_difference = new_timestamp - self.old_timestamp
 
