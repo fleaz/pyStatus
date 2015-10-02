@@ -1,7 +1,15 @@
 #! /usr/bin/env python3
-import psutil
+
 from time import time
+from collections import namedtuple
+
 from ..BarItem import BarItem
+
+import psutil
+
+
+_DataSnapshot = namedtuple('DataSnapshot', ['timestamp', 'sent', 'received'])
+
 
 class Traffic(BarItem):
 
@@ -9,9 +17,7 @@ class Traffic(BarItem):
         BarItem.__init__(self, "Traffic")
         self.output['name'] = "Traffic"
         self.interface = interface
-        self.old_sent = 1
-        self.old_recv = 1
-        self.old_timestamp = time()
+        self.old = _DataSnapshot(time(), 1, 1)
         self.update()
 
     def update(self):
@@ -25,20 +31,17 @@ class Traffic(BarItem):
         new_sent, new_recv, *_ = interface_info
         new_timestamp = time()
 
-        time_difference = new_timestamp - self.old_timestamp
+        time_difference = new_timestamp - self.old.timestamp
 
         if time_difference > 0:
-            speed_sent = (new_sent - self.old_sent) / time_difference
-            speed_recv = (new_recv - self.old_recv) / time_difference
+            speed_sent = (new_sent - self.old.sent) / time_difference
+            speed_recv = (new_recv - self.old.received) / time_difference
         else:
             speed_sent = 0
             speed_recv = 0
 
+        self.old = _DataSnapshot(new_timestamp, new_sent, new_recv)
+
         speed_sent = "%.2f" % ((speed_sent * 8) / 1000000) # Convert 'byte per sec' to 'mbit per sec'
         speed_recv = "%.2f" % ((speed_recv * 8) / 1000000)
-
-        self.old_recv = new_recv
-        self.old_sent = new_sent
-        self.old_timestamp = new_timestamp
-
         self.output['full_text'] = "▲ {} MBps ▼ {} MBps".format(speed_sent, speed_recv)
