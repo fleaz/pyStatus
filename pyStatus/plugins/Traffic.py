@@ -11,7 +11,7 @@ class Traffic(BarItem):
         self.interface = interface
         self.old_sent = 1
         self.old_recv = 1
-        self.old_timestamp = 1
+        self.old_timestamp = time()
         self.update()
 
     def update(self):
@@ -26,9 +26,11 @@ class Traffic(BarItem):
         new_recv = interface_info[1]
         new_timestamp = int(time())
 
-        if (new_timestamp - self.old_timestamp) > 0:
-            speed_sent = (new_sent - self.old_sent) / (new_timestamp - self.old_timestamp)
-            speed_recv = (new_recv - self.old_recv) / (new_timestamp - self.old_timestamp)
+        time_difference = new_timestamp - self.old_timestamp
+
+        if time_difference > 0:
+            speed_sent = (new_sent - self.old_sent) / time_difference
+            speed_recv = (new_recv - self.old_recv) / time_difference
         else:
             speed_sent = 0
             speed_recv = 0
