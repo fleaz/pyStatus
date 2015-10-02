@@ -5,6 +5,7 @@ class BarItem(object):
     valid_options = set(['full_text', 'short_text', 'color', 'min_width',
                          'align', 'name', 'instance', 'urgent', 'separator',
                          'separator_block_width'])
+    COLOR_DEFAULT = '#FFFFFF'
 
     def __init__(self, name):
         assert(len(name) > 0)

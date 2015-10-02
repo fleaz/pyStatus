@@ -44,4 +44,5 @@ class Traffic(BarItem):
 
         speed_sent = "%.2f" % ((speed_sent * 8) / 1000000) # Convert 'byte per sec' to 'mbit per sec'
         speed_recv = "%.2f" % ((speed_recv * 8) / 1000000)
+        self.output['color'] = self.COLOR_DEFAULT
         self.output['full_text'] = "▲ {} MBps ▼ {} MBps".format(speed_sent, speed_recv)
