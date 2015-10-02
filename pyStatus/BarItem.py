@@ -18,5 +18,5 @@ class BarItem(object):
         return self.output
 
     def set(self, option, value):
-        assert(option in self.valid_options)
+        assert option in self.valid_options
         self.output[option] = value
