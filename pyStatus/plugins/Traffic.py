@@ -15,7 +15,13 @@ class Traffic(BarItem):
         self.update()
 
     def update(self):
-        interface_info = psutil.net_io_counters(pernic=True)[self.interface]
+        try:
+            interface_info = psutil.net_io_counters(pernic=True)[self.interface]
+        except KeyError:
+            self.output['color'] = '#FF0000'
+            self.output['full_text'] = "Failed to find interface {!r}".format(self.interface)
+            return
+
         new_sent = interface_info[0]
         new_recv = interface_info[1]
         new_timestamp = int(time())
