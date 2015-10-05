@@ -4,7 +4,6 @@ from ..BarItem import BarItem
 
 
 class Time(BarItem):
-    output_format = ""
 
     def __init__(self, output_format="%H:%M"):
         BarItem.__init__(self, "Time")
