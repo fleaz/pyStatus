@@ -31,7 +31,7 @@ class Filesystem(BarItem):
         return _Diskusage(total, used, free)
 
     def sizeof_fmt(self, num):
-        for x in ('bytes','KB','MB','GB'):
+        for x in ('bytes', 'KB', 'MB', 'GB'):
             if num < 1024.0:
                 return "%3.1f%s" % (num, x)
             num /= 1024.0
@@ -60,4 +60,3 @@ class Filesystem(BarItem):
             self.output['full_text'] = "HDD{path}: {0}/{1}".format(used, total, path=path)
         else:
             self.output['full_text'] = "HDD{path}: {0} free".format(free, path=path)
-
