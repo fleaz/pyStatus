@@ -1,8 +1,12 @@
 #! /usr/bin/env python3
-from ..BarItem import BarItem
+
 import os
 from collections import namedtuple
-_ntuple_diskusage = namedtuple('usage', 'total used free')
+
+from ..BarItem import BarItem
+
+_Diskusage = namedtuple('usage', 'total used free')
+
 
 class Filesystem(BarItem):
 
@@ -24,7 +28,7 @@ class Filesystem(BarItem):
         free = st.f_bavail * st.f_frsize
         total = st.f_blocks * st.f_frsize
         used = (st.f_blocks - st.f_bfree) * st.f_frsize
-        return _ntuple_diskusage(total, used, free)
+        return _Diskusage(total, used, free)
 
     def sizeof_fmt(self, num):
         for x in ('bytes','KB','MB','GB'):
