@@ -11,20 +11,13 @@ class CPU(BarItem):
         self.update()
 
     def update(self):
-        all_load = psutil.cpu_percent(interval=1, percpu=True)
-        count = psutil.cpu_count()
-        sum = 0
-        for i in range(count):
-            sum = sum + all_load[i]
+        load = sum(psutil.cpu_percent(interval=1, percpu=True)) / psutil.cpu_count()
 
-        sum = sum / count
-
-        if sum < 80:
+        if load < 80:
             self.output['color'] = "#FFFFFF"
-        elif 80 <= sum < 95:
+        elif 80 <= load < 95:
             self.output['color'] = "#FFFF00"
         else:
             self.output['color'] = "#FF0000"
 
-        sum = '%.0f' % sum
-        self.output['full_text'] = "CPU: " + str(sum) + "%"
+        self.output['full_text'] = "CPU: {0:.0f}%".format(load)

@@ -16,7 +16,7 @@ class ESSID(BarItem):
         ssid = iwi["essid"]
         quality = iwi["quality"]["quality"]
 
-        if (len(ssid) > 0):
-            self.output['full_text'] = ssid + " (" + str(quality) + "%)"
+        if ssid:
+            self.output['full_text'] = "{0} ({1}%)".format(ssid, quality)
         else:
             self.output['full_text'] = "-"

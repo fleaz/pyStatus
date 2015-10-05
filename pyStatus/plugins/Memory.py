@@ -19,10 +19,10 @@ class Memory(BarItem):
 
         mem_used = mem_used - mem_buffer - mem_cached
 
-        mem_total = '%.0f' % (mem_total / 1048578)
-        mem_used = '%.0f' % (mem_used / 1048578)
+        mem_total = mem_total / 1048578
+        mem_used = mem_used / 1048578
 
-        self.output['full_text'] = "RAM: " + mem_used + " MB/" + mem_total + " MB"
+        self.output['full_text'] = "RAM: {0:.0f} MB / {1:.0f} MB".format(mem_used, mem_total)
 
 
 class FreeMemory(BarItem):
