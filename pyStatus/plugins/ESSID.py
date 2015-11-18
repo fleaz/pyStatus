@@ -19,4 +19,5 @@ class ESSID(BarItem):
         if (len(ssid) > 0):
             self.output['full_text'] = ssid + " (" + str(quality) + "%)"
         else:
-            self.output['full_text'] = "-"
+            self.output['color'] = "#FF0000"
+            self.output['full_text'] = "X"

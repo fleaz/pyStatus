@@ -53,7 +53,7 @@ class Filesystem(BarItem):
             path = ""
 
         if self.style == "used":
-            self.output['full_text'] = "HDD{path}: {0}/{1}".format(used, total, path=path)
+            self.output['full_text'] = "{0}/{1}".format(used, total)
         else:
-            self.output['full_text'] = "HDD{path}: {0} free".format(free, path=path)
+            self.output['full_text'] = "{0}".format(free)
 

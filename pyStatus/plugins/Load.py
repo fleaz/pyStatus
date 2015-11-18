@@ -22,4 +22,4 @@ class Load(BarItem):
         else:
             self.output['color'] = "#FF0000"
 
-        self.output['full_text'] = "Load: {}".format(load_1)
+        self.output['full_text'] = "{}".format(load_1)

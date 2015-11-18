@@ -6,9 +6,11 @@ from .BarItem import BarItem
 
 
 class Bar():
-    def __init__(self, delay=1.5):
+    def __init__(self, delay=1.5, separator=True, separator_width=9):
         self.items = []
         self.delay = delay
+        self.separator = separator
+        self.separator_width = separator_width
 
     def register(self, item):
         """
@@ -26,7 +28,11 @@ class Bar():
         output = []
         for item in self.items:
             item.update()
-            output.append(item.get())
+            plugin_text = item.get()
+            plugin_text["separator"] = self.separator
+            plugin_text["separator_block_width"] = self.separator_width
+
+            output.append(plugin_text)
         return json.dumps(output)
 
     def loop(self):
