@@ -17,6 +17,7 @@ class ESSID(BarItem):
         quality = iwi["quality"]["quality"]
 
         if (len(ssid) > 0):
+            self.output['color'] = "#FFFFFF"
             self.output['full_text'] = ssid + " (" + str(quality) + "%)"
         else:
             self.output['color'] = "#FF0000"
