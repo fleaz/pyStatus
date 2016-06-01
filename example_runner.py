@@ -1,23 +1,18 @@
 #! /usr/bin/env python3
 
 from pyStatus.Bar import Bar
-from pyStatus.plugins import Time, Battery, CPU, Memory, Ip, Traffic, Filesystem, ESSID, MemPercent, MPD, Load
+from pyStatus.plugins import Time, Battery, CPU, Memory, Ip, Traffic, Filesystem, ESSID, Updates, DNS, Internet, Load, Temp, Text
 
 
-my_bar = Bar(delay=1)
-my_bar.register(DNS.DNS(address="www.google.de"))
-my_bar.register(Internet.Internet(address="http://www.google.de"))
-my_bar.register(Filesystem.Filesystem(path='/', style="free", show_path=True))
+my_bar = Bar(delay=1, separator=False, separator_width = 15)
+my_bar.register(Updates.Updates())
+my_bar.register(Temp.Temp(warn=50, crit=70))
+my_bar.register(Filesystem.Filesystem(path='/', style="free", show_path=False))
 my_bar.register(ESSID.ESSID(interface="wlp3s0"))
-my_bar.register(Ip.IP(interface="wlp3s0", type="wifi", protocol=4))
-my_bar.register(Ip.IP(interface="eth0", type="lan", protocol=4))
-my_bar.register(Traffic.Traffic(interface="wlp3s0"))
-my_bar.register(Memory.Memory())
-my_bar.register(MemPercent.MemoryPercent())
-my_bar.register(CPU.CPU())
-my_bar.register(Load.Load(0.5, 1.0))
+my_bar.register(Load.Load(2.0, 4.0))
 my_bar.register(Battery.Battery())
 my_bar.register(Time.Time("%H:%M"))
-my_bar.register(MPD.MPD("localhost"))
+my_bar.register(Text.Text(text="Foo", color="#FF0000"))
 
 my_bar.loop()
+

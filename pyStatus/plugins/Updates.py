@@ -27,4 +27,4 @@ class Updates(BarItem):
             else:
                 self.output['color'] = "#FF0000"
 
-            self.output['full_text'] = "Updates: {}".format(str(num))
+            self.output['full_text'] = "{} Updates".format(str(num))

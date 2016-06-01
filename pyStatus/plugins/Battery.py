@@ -39,7 +39,7 @@ class Battery(BarItem):
 
         try:
             percentage = (int(results["bat_now"]) / int(results["bat_full"])) * 100
-            self.output['full_text'] = "Battery: {0:.1f}%".format(percentage)
+            self.output['full_text'] = "{0:.1f}%".format(percentage)
 
             if 25 < percentage:
                 self.output['color'] = "#FFFFFF"
@@ -48,7 +48,7 @@ class Battery(BarItem):
             else:
                 self.output['color'] = "#FF0000"
         except KeyError:
-            self.output['full_text'] = "Battery: unknown"
+            self.output['full_text'] = "unknown"
 
         try:
             if results["status"].strip() == "Charging":
