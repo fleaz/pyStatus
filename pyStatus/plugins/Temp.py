@@ -26,4 +26,4 @@ class Temp(BarItem):
         else:
             self.output['color'] = "#FF0000"
 
-        self.output['full_text'] = "CPU: {}°C".format(temp)
+        self.output['full_text'] = "{}°C".format(temp)
