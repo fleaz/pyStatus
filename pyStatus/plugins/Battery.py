@@ -8,6 +8,7 @@ class Battery(BarItem):
     TYPE_AND_LOCATION = {
         "bat_full": ["energy_full_design", "charge_full_design"],
         "bat_now": ["energy_now", "charge_now"],
+        "capacity": ["capacity"],
         "status": ["status"]
     }
 
@@ -19,7 +20,7 @@ class Battery(BarItem):
 
     def update(self):
         for element in os.listdir(self._battery_path):
-            if element.startswith('BAT'):
+            if element.startswith('BAT{}'.format(self.number)):
                 device = element
                 break
         else:
@@ -38,7 +39,11 @@ class Battery(BarItem):
                     pass
 
         try:
-            percentage = (int(results["bat_now"]) / int(results["bat_full"])) * 100
+            if results.get("capacity"):
+                percentage = int(results["capacity"])
+            else:
+                percentage = (int(results["bat_now"]) / int(results["bat_full"])) * 100
+
             self.output['full_text'] = "{0:.1f}%".format(percentage)
 
             if 25 < percentage:
