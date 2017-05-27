@@ -2,3 +2,4 @@ psutil
 python-musicpd
 netifaces
 basiciw
+requests
