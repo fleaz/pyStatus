@@ -5,9 +5,9 @@ Python tool to use with i3bar
 
 ## Requirements
 * psutil
-*  python-musicpd
-*  netifaces
-*  basiciw
+* python-musicpd
+* netifaces
+* basiciw
 
 ### Install requirements
 #### with pip:
