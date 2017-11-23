@@ -56,3 +56,4 @@ docs/_build/
 # custom
 .idea
 runner.py
+pyStatus.egg-info/
