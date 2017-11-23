@@ -11,7 +11,7 @@ Python tool to use with i3bar
 
 ### Install requirements
 #### with pip:
-* pip install -r requirements.txt``
+* `pip install -r requirements.txt`
 
 ## Installation
 1) Copy example_runner.py to your runner.py file
