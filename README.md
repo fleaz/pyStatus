@@ -2,6 +2,11 @@
 
 Python tool to use with i3bar
 
+**Needs a proper rewrite...
+See https://github.com/f-breidenstein/pyStatus/issues/11 for infos**
+
+
+
 
 ## Requirements
 * psutil
